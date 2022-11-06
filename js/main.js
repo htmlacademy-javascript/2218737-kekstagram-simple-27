@@ -1,4 +1,4 @@
-let randomFromAtoB = function (a, b) {
+let getRandomInt = function (a, b) {
   if (a > b) {
     return NaN;
   }
@@ -7,15 +7,10 @@ let randomFromAtoB = function (a, b) {
   return random * (b - a) + a ; // от а до а+1
 };
 
-console.log(randomFromAtoB(200,199))
+console.log(getRandomInt(201,200))
 
-let isCorrectLengt = function (str, maxLength) {
-  let c = str.length;
-  if (c <= maxLength) {
-    return true;
-  } else {
-    return false;
-  }
+let checkStringLength = function (str, maxLength) {
+  return str.length <= maxLength
 };
 
-console.log(isCorrectLengt("1", 1))
+console.log(checkStringLength("1", 1))
