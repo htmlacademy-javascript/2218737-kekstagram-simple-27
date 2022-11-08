@@ -1,15 +1,5 @@
 const PHOTOS_AMOUNT = 25;
 
-const LikesAmount = {
-  min: 15,
-  max: 200
-};
-
-const Comments = {
-  min: 0,
-  max: 200
-};
-
 const DESCRIPTION = [
   'На отдыхе.',
   'Тусим с друзьями.',
@@ -20,41 +10,47 @@ const DESCRIPTION = [
   'Проводим отпуск с пользой.',
   'Это было волшебно!',
   'Хотел бы я тут остаться навсегда.',
-  'Тест новой камеры.'
+  'Тест новой камеры.',
 ];
 
+const LikesAmount = {
+  min: 15,
+  max: 200,
+};
+
+const Comments = {
+  min: 0,
+  max: 200,
+};
+
 const getRandomInt = function (a, b) {
-  if (a > b) {
+  if (a < 0 || b < 0) {
     return NaN;
   }
 
-  const random = Math.random(); // от 0 до 1
-  return random * (b - a) + a ; // от а до а+1
+  const lowerRandom = Math.ceil(Math.min(a, b));
+  const upperRandom = Math.floor(Math.max(a,b));
+  const resultRandom = Math.random() * (upperRandom - lowerRandom + 1) + lowerRandom;
+  return Math.floor(resultRandom);
 };
-
-getRandomInt();
 
 const checkStringLength = function (str, maxLength) {
   return str.length <= maxLength;
 };
 
-checkStringLength();
-
-const getRandomArrayElement = (elements) => elements[getRandomInt(0, elements.lenght - 1)];
+const getRandomArrayElement = (elements) => elements[getRandomInt(0, elements.length - 1)];
 
 const createPhotos = (index) => ({
   id: index,
-  url: 'photos/{index}}.jpg',
+  url: `photos/${index}.jpg`,
   description: getRandomArrayElement(DESCRIPTION),
   likes: getRandomInt(LikesAmount.min, LikesAmount.max),
   comments:  getRandomInt(Comments.min, Comments.max)
 });
 
 const getPhotos = () =>
-  Array.from({lenght: PHOTOS_AMOUNT}, (_, photoIndex) =>
+  Array.from({length: PHOTOS_AMOUNT}, (_, photoIndex) =>
     createPhotos(photoIndex + 1)
   );
 
-
-createPhotos();
-getPhotos();
+const startGettingPhotos = getPhotos();
