@@ -1,4 +1,4 @@
-import {getPhotos} from './photos.js'
+import {getPhotos} from './photos.js';
 
-const photosArray = getPhotos();
-
+const photos = getPhotos();
+console.log(photos);
