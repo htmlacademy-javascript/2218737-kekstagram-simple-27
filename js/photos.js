@@ -1,5 +1,5 @@
 import {getRandomArrayElement, getRandomInt} from "./funcs";
-import {PHOTOS_AMOUNT, LikesAmount, Comments, DESCRIPTION} from "./сonstants";
+import {PHOTOS_AMOUNT, LikesAmount, Comments, DESCRIPTION} from "./constants";
 
 const createPhotos = (index) => ({
   id: index,
