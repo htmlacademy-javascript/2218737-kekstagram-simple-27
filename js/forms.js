@@ -44,9 +44,9 @@ const onFileInputChange = () => {
 };
 
 const onFormSubmit = (evt) => {
-  evt.preventDefault();
-  pristine.validate();
-};
+  if (!pristine.validate()) {
+    evt.preventDefault();
+  }};
 
 fileField.addEventListener('change', onFileInputChange);
 cancelButton.addEventListener('click', onCancelButtonClick);
