@@ -49,6 +49,12 @@ const EFFECTS = [
 
 const DEFAULT_EFFECT = EFFECTS[0];
 
+const effects = {};
+
+for (let i = 0; i < EFFECTS.length; i++) {
+  effects[EFFECTS[i]['name']] = EFFECTS[i];
+}
+
 const photo = document.querySelector('.img-upload__preview');
 const form = document.querySelector('.img-upload__form');
 const sliderElement = document.querySelector('.effect-level__slider');
@@ -57,6 +63,7 @@ const effectLevel = document.querySelector('.effect-level__value');
 let chosenEffect = DEFAULT_EFFECT;
 
 const isDefault = () => chosenEffect === DEFAULT_EFFECT;
+
 
 const moveSlider = () => {
   sliderElement.classList.remove('hidden');
@@ -77,7 +84,7 @@ const onFormChange = (evt) => {
   if (!evt.target.classList.contains('effects__radio')) {
     return;
   }
-  chosenEffect = EFFECTS.find((effect) => effect.name === evt.target.value);
+  chosenEffect = effects[evt.target.value];
   moveSlider();
 };
 
@@ -115,3 +122,4 @@ form.addEventListener('change', onFormChange);
 sliderElement.noUiSlider.on('update', onSliderMove);
 
 export {resetEffects};
+
