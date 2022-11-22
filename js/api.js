@@ -1,18 +1,21 @@
 const SOURCE_DATA = 'https://27.javascript.pages.academy/kekstagram-simple/data';
 const SOURCE = 'https://27.javascript.pages.academy/kekstagram-simple';
 
-const createLoader = async (onSuccess, onError) => {
+const createLoader = async (onError) => {
   try {
     const response = await fetch(
-      SOURCE_DATA
+      SOURCE_DATA,
+      {
+        method: 'GET',
+        credentials: 'same-origin'
+      },
     );
 
     if(!response.ok) {
       throw new Error();
     }
 
-    const images = await response.json();
-    onSuccess(images);
+    return await response.json();
   } catch (error) {
     onError(error.message);
   }
