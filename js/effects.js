@@ -1,59 +1,13 @@
-const EFFECTS = [
-  {
-    name: 'none',
-    min: 0,
-    max: 100,
-    step: 1
-  },
-  {
-    name: 'chrome',
-    style: 'grayscale',
-    min: 0,
-    max: 1,
-    step: 0.1,
-    unit: '',
-  },
-  {
-    name: 'sepia',
-    style: 'sepia',
-    min: 0,
-    max: 1,
-    step: 0.1,
-    unit: '',
-  },
-  {
-    name: 'marvin',
-    style: 'invert',
-    min: 0,
-    max: 100,
-    step: 1,
-    unit: '%',
-  },
-  {
-    name: 'phobos',
-    style: 'blur',
-    min: 0,
-    max: 3,
-    step: 0.1,
-    unit: 'px',
-  },
-  {
-    name: 'heat',
-    style: 'brightness',
-    min: 1,
-    max: 3,
-    step: 0.1,
-    unit: '',
-  },
-];
+const EFFECTS = {
+  none: {min: 0, max: 100, step: 1},
+  chrome:  {style: 'grayscale', min: 0, max: 1, step: 0.1, unit:''},
+  sepia: {style: 'sepia', min: 0, max: 1, step: 0.1, unit:''},
+  marvin: {style: 'invert', min: 0, max: 100, step: 1, unit: '%'},
+  phobos: {style: 'blur', min: 0, max: 3, step: 0.1, unit: 'px'},
+  heat: {style: 'brightness', min: 1, max: 3, step: 0.1, unit:''},
+};
 
-const DEFAULT_EFFECT = EFFECTS[0];
-
-const effects = {};
-
-for (let i = 0; i < EFFECTS.length; i++) {
-  effects[EFFECTS[i]['name']] = EFFECTS[i];
-}
+const DEFAULT_EFFECT = EFFECTS.none;
 
 const photo = document.querySelector('.img-upload__preview');
 const form = document.querySelector('.img-upload__form');
@@ -84,7 +38,7 @@ const onFormChange = (evt) => {
   if (!evt.target.classList.contains('effects__radio')) {
     return;
   }
-  chosenEffect = effects[evt.target.value];
+  chosenEffect = EFFECTS[evt.target.value];
   moveSlider();
 };
 
