@@ -1,3 +1,6 @@
+import {resetScale} from './scale.js';
+import {resetEffects} from './effects.js';
+
 const form = document.querySelector('.img-upload__form');
 const overlay = document.querySelector('.img-upload__overlay');
 const body = document.querySelector('body');
@@ -18,6 +21,8 @@ const showModal = () => {
 };
 
 const hideModal = () => {
+  resetScale();
+  resetEffects();
   form.reset();
   pristine.reset();
   overlay.classList.add('hidden');
@@ -51,3 +56,4 @@ const onFormSubmit = (evt) => {
 fileField.addEventListener('change', onFileInputChange);
 cancelButton.addEventListener('click', onCancelButtonClick);
 form.addEventListener('submit', onFormSubmit);
+
