@@ -25,12 +25,15 @@ const showSuccessMessage = () => {
   bodyElement.style.overflow = 'modal-open';
 };
 
-const showErrorMessage = () => {
+const showErrorMessage = (error) => {
   const errorElement = errorTemplate.cloneNode(true);
   document.addEventListener('keydown', onMessageEscKeydown);
   errorElement.querySelector('.error__button').addEventListener('click', onErrorButtonClick);
   bodyElement.append(errorElement);
   bodyElement.style.overflow = 'hidden';
+  if (error) {
+    bodyElement.querySelector('.error__title').textContent = error;
+  }
 };
 
 function hideMessage () {
