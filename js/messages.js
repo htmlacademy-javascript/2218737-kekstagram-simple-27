@@ -22,17 +22,17 @@ const showSuccessMessage = () => {
   document.addEventListener('keydown', onMessageEscKeydown);
   document.addEventListener('click', onOverlayClick);
   bodyElement.append(successElement);
-  bodyElement.style.overflow = 'modal-open';
+  bodyElement.classList.add('modal-open');
 };
 
-const showErrorMessage = (error) => {
+const showErrorMessage = (errorMessage) => {
   const errorElement = errorTemplate.cloneNode(true);
   document.addEventListener('keydown', onMessageEscKeydown);
   errorElement.querySelector('.error__button').addEventListener('click', onErrorButtonClick);
   bodyElement.append(errorElement);
-  bodyElement.style.overflow = 'hidden';
-  if (error) {
-    bodyElement.querySelector('.error__title').textContent = error;
+  bodyElement.classList.add('modal-open');
+  if (errorMessage) {
+    bodyElement.querySelector('.error__title').textContent = errorMessage;
   }
 };
 
@@ -41,7 +41,7 @@ function hideMessage () {
   messageElement.remove();
   document.removeEventListener('keydown', onMessageEscKeydown);
   document.removeEventListener('click', onOverlayClick);
-  bodyElement.style.overflow = 'auto';
+  bodyElement.classList.remove('modal-open');
 }
 
 
