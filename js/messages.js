@@ -22,7 +22,7 @@ const showSuccessMessage = () => {
   document.addEventListener('keydown', onMessageEscKeydown);
   document.addEventListener('click', onOverlayClick);
   bodyElement.append(successElement);
-  bodyElement.style.overflow = 'hidden';
+  bodyElement.style.overflow = 'modal-open';
 };
 
 const showErrorMessage = () => {

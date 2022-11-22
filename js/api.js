@@ -1,7 +1,10 @@
+const SOURCE_DATA = 'https://27.javascript.pages.academy/kekstagram-simple/data';
+const SOURCE = 'https://27.javascript.pages.academy/kekstagram-simple';
+
 const createLoader = async (onSuccess, onError) => {
   try {
     const response = await fetch(
-      'https://27.javascript.pages.academy/kekstagram-simple/data'
+      SOURCE_DATA
     );
 
     if(!response.ok) {
@@ -18,7 +21,7 @@ const createLoader = async (onSuccess, onError) => {
 const sendData = async (onSuccess, onError, body) => {
   try {
     const response = await fetch(
-      'https://27.javascript.pages.academy/kekstagram-simple',
+      SOURCE,
       {
         method: 'POST',
         body,

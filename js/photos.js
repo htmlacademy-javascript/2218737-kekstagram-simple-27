@@ -1,17 +1,20 @@
-import {getRandomArrayElement, getRandomInt} from './funcs.js';
-import {PHOTOS_AMOUNT, LikesAmount, Comments, DESCRIPTION} from './constants.js';
+const getData = (onError) => () => fetch(
+  'https://27.javascript.pages.academy/kekstagram-simple/data',
+  {
+    method: 'GET',
+    credentials: 'same-origin'
+  },
+)
+  .then((response) => {
+    if (response.ok) {
+      return response.json();
+    }
+    throw new Error();
+  })
+  .catch((err) => {
+    onError(err);
+  });
 
-const createPhotos = (index) => ({
-  id: index,
-  url: `photos/${index}.jpg`,
-  description: getRandomArrayElement(DESCRIPTION),
-  likes: getRandomInt(LikesAmount.min, LikesAmount.max),
-  comments:  getRandomInt(Comments.min, Comments.max)
-});
-
-const getPhotos = () =>
-  Array.from({length: PHOTOS_AMOUNT}, (_, photoIndex) =>
-    createPhotos(photoIndex + 1)
-  );
+const getPhotos = getData(alert);
 
 export {getPhotos};
