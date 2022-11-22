@@ -16,10 +16,9 @@ const scalePhoto = (value = DEFAULT_SCALE) => {
 const onScaleButtonClick = (scale) => () => {
   const currentValue = parseInt(scalingInput.value, 10);
   let newValue = currentValue + (scale * SCALE_STEP);
-  if (scale > 0 && newValue > MAX_SCALE) {
+  if (newValue > MAX_SCALE) {
     newValue = MAX_SCALE;
-  }
-  if (scale < 0 && newValue < MIN_SCALE) {
+  } else if (newValue < MIN_SCALE) {
     newValue = MIN_SCALE;
   }
   scalePhoto(newValue);
