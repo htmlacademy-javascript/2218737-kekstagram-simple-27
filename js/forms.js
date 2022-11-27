@@ -1,5 +1,7 @@
 import {resetScale} from './scale.js';
 import {resetEffects} from './effects.js';
+import { showErrorMessage, showSuccessMessage } from './messages.js';
+import { sendData } from './api.js';
 
 const form = document.querySelector('.img-upload__form');
 const overlay = document.querySelector('.img-upload__overlay');
@@ -49,11 +51,16 @@ const onFileInputChange = () => {
 };
 
 const onFormSubmit = (evt) => {
+  evt.preventDefault();
   if (!pristine.validate()) {
-    evt.preventDefault();
-  }};
+    showErrorMessage();
+  } else {
+    const onSendDataSuccess = () => {
+      hideModal();
+      showSuccessMessage();
+    };
+    sendData(onSendDataSuccess, showErrorMessage, new FormData(form));}};
 
 fileField.addEventListener('change', onFileInputChange);
 cancelButton.addEventListener('click', onCancelButtonClick);
 form.addEventListener('submit', onFormSubmit);
-
