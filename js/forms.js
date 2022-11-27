@@ -56,9 +56,7 @@ const onFormSubmit = (evt) => {
     showErrorMessage();
   } else {
     const onSendDataSuccess = () => {
-      resetEffects();
-      resetScale();
-      form.reset();
+      hideModal();
       showSuccessMessage();
     };
     sendData(onSendDataSuccess, showErrorMessage, new FormData(form));}};
@@ -66,4 +64,3 @@ const onFormSubmit = (evt) => {
 fileField.addEventListener('change', onFileInputChange);
 cancelButton.addEventListener('click', onCancelButtonClick);
 form.addEventListener('submit', onFormSubmit);
-
